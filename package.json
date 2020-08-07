@@ -6,13 +6,15 @@
   "scripts": {
     "test": "mocha",
     "dev": "node server.js",
-    "build": "next build"
+    "build": "next build",
+    "deploy:contract": "node ethereum/deploy.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@truffle/hdwallet-provider": "^1.0.40",
     "fs-extra": "^5.0.0",
-    "ganache-cli": "^6.0.3",
+    "ganache-cli": "^6.10.1",
     "mocha": "^4.1.0",
     "next": "^4.1.4",
     "next-routes": "^1.2.0",

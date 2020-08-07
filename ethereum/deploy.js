@@ -1,10 +1,11 @@
-const HDWalletProvider = require('truffle-hdwallet-provider');
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 const Web3 = require('web3');
 const compiledFactory = require('./build/CampaignFactory.json');
 
+const mnemonic = 'call glow acoustic vintage front ring trade assist shuffle mimic volume reject'
 const provider = new HDWalletProvider(
-  'call glow acoustic vintage front ring trade assist shuffle mimic volume reject',
-  'https://rinkeby.infura.io/orDImgKRzwNrVCDrAk5Q'
+  mnemonic,
+  'https://ropsten.infura.io/v3/f55a035e0f9c4adab3ba431f142ce1b4'
 );
 const web3 = new Web3(provider);
 
