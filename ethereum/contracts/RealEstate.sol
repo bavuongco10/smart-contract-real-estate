@@ -1,19 +1,19 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.25;
 
-contract CampaignFactory {
-    address[] public deployedCampaigns;
+contract RealEstateFactory {
+    address[] public deployedRealEstates;
 
-    function createCampaign(uint minimum) public {
-        address newCampaign = new Campaign(minimum, msg.sender);
-        deployedCampaigns.push(newCampaign);
+    function createRealEstate(string homeAddress) public {
+        address newRealEstate = new RealEstate(homeAddress, msg.sender);
+        deployedRealEstates.push(newRealEstate);
     }
 
-    function getDeployedCampaigns() public view returns (address[]) {
-        return deployedCampaigns;
+    function getDeployedRealEstates() public view returns (address[]) {
+        return deployedRealEstates;
     }
 }
 
-contract Campaign {
+contract RealEstate {
     struct Request {
         string description;
         uint value;
@@ -34,7 +34,7 @@ contract Campaign {
         _;
     }
 
-    function Campaign(uint minimum, address creator) public {
+    function RealEstate(uint minimum, address creator) public {
         manager = creator;
         minimumContribution = minimum;
     }

@@ -5,7 +5,7 @@ import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
 import { Router } from '../../routes';
 
-class CampaignNew extends Component {
+class RealEstateNew extends Component {
   state = {
     minimumContribution: '',
     errorMessage: '',
@@ -20,7 +20,7 @@ class CampaignNew extends Component {
     try {
       const accounts = await web3.eth.getAccounts();
       await factory.methods
-        .createCampaign(this.state.minimumContribution)
+        .createRealEstate(this.state.minimumContribution)
         .send({
           from: accounts[0]
         });
@@ -36,14 +36,12 @@ class CampaignNew extends Component {
   render() {
     return (
       <Layout>
-        <h3>Create a Campaign</h3>
+        <h3>Register a Real Estate</h3>
 
         <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
           <Form.Field>
-            <label>Minimum Contribution</label>
+            <label>Real Estate Address</label>
             <Input
-              label="wei"
-              labelPosition="right"
               value={this.state.minimumContribution}
               onChange={event =>
                 this.setState({ minimumContribution: event.target.value })}
@@ -60,4 +58,4 @@ class CampaignNew extends Component {
   }
 }
 
-export default CampaignNew;
+export default RealEstateNew;

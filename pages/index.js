@@ -4,20 +4,20 @@ import factory from '../ethereum/factory';
 import Layout from '../components/Layout';
 import { Link } from '../routes';
 
-class CampaignIndex extends Component {
+class RealEstateIndex extends Component {
   static async getInitialProps() {
-    const campaigns = await factory.methods.getDeployedCampaigns().call();
+    const realEstates = await factory.methods.getDeployedRealEstates().call();
 
-    return { campaigns };
+    return { realEstates };
   }
 
-  renderCampaigns() {
-    const items = this.props.campaigns.map(address => {
+  renderRealEstates() {
+    const items = this.props.realEstates.map(address => {
       return {
         header: address,
         description: (
-          <Link route={`/campaigns/${address}`}>
-            <a>View Campaign</a>
+          <Link route={`/estates/${address}`}>
+            <a>View RealEstate</a>
           </Link>
         ),
         fluid: true
@@ -31,24 +31,24 @@ class CampaignIndex extends Component {
     return (
       <Layout>
         <div>
-          <h3>Open Campaigns</h3>
+          <h3>Open Real Estates</h3>
 
-          <Link route="/campaigns/new">
+          <Link route="/estates/new">
             <a>
               <Button
                 floated="right"
-                content="Create Campaign"
+                content="Register Real Estate"
                 icon="add circle"
                 primary
               />
             </a>
           </Link>
 
-          {this.renderCampaigns()}
+          {this.renderRealEstates()}
         </div>
       </Layout>
     );
   }
 }
 
-export default CampaignIndex;
+export default RealEstateIndex;

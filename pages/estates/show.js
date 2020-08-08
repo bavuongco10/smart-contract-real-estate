@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Card, Grid, Button } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
-import Campaign from '../../ethereum/campaign';
+import RealEstate from '../../ethereum/realEstate';
 import web3 from '../../ethereum/web3';
 import ContributeForm from '../../components/ContributeForm';
 import { Link } from '../../routes';
 
-class CampaignShow extends Component {
+class RealEstateShow extends Component {
   static async getInitialProps(props) {
-    const campaign = Campaign(props.query.address);
+    const realEstate = RealEstate(props.query.address);
 
-    const summary = await campaign.methods.getSummary().call();
+    const summary = await realEstate.methods.getSummary().call();
 
     return {
       address: props.query.address,
@@ -36,7 +36,7 @@ class CampaignShow extends Component {
         header: manager,
         meta: 'Address of Manager',
         description:
-          'The manager created this campaign and can create requests to withdraw money',
+          'The manager created this real estate and can create requests to withdraw money',
         style: { overflowWrap: 'break-word' }
       },
       {
@@ -55,13 +55,13 @@ class CampaignShow extends Component {
         header: approversCount,
         meta: 'Number of Approvers',
         description:
-          'Number of people who have already donated to this campaign'
+          'Number of people who have already donated to this real estate'
       },
       {
         header: web3.utils.fromWei(balance, 'ether'),
-        meta: 'Campaign Balance (ether)',
+        meta: 'RealEstate Balance (ether)',
         description:
-          'The balance is how much money this campaign has left to spend.'
+          'The balance is how much money this real estate has left to spend.'
       }
     ];
 
@@ -71,7 +71,7 @@ class CampaignShow extends Component {
   render() {
     return (
       <Layout>
-        <h3>Campaign Show</h3>
+        <h3>RealEstate Show</h3>
         <Grid>
           <Grid.Row>
             <Grid.Column width={10}>{this.renderCards()}</Grid.Column>
@@ -83,7 +83,7 @@ class CampaignShow extends Component {
 
           <Grid.Row>
             <Grid.Column>
-              <Link route={`/campaigns/${this.props.address}/requests`}>
+              <Link route={`/estates/${this.props.address}/requests`}>
                 <a>
                   <Button primary>View Requests</Button>
                 </a>
@@ -96,4 +96,4 @@ class CampaignShow extends Component {
   }
 }
 
-export default CampaignShow;
+export default RealEstateShow;
