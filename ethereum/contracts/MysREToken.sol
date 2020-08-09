@@ -149,22 +149,20 @@ contract MysREToken is AccessControl, DetailedERC721 {
     }
 
     RegisterRequest[] public registerRequests;
-
     function createRegisterRequest(string homeAddress) public {
+        require(appointedApprovers.length > 0);
         RegisterRequest memory newRequest = RegisterRequest({
             owner : msg.sender,
             homeAddress : homeAddress,
             complete : false,
             approversCount : appointedApprovers.length,
             approvalsCount : 0
-            });
+        });
 
-        uint256 newTokenId = registerRequests.push(newRequest); - 1;
-        RegisterRequest currentRequest = registerRequests[newTokenId];
+        uint256 newTokenIndex = registerRequests.push(newRequest) - 1;
+        RegisterRequest storage currentRequest = registerRequests[newTokenIndex];
         for (uint256 i = 0; i < appointedApprovers.length; i++) {
-            address currentApproval = appointedApprovers[i];
-            currentRequest.approvers[currentApproval] = true;
-            currentRequest.approvals[currentApproval] = false;
+            currentRequest.approvers[appointedApprovers[i]] = true;
         }
     }
 

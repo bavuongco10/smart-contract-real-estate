@@ -3,35 +3,15 @@ import { Card, Button } from 'semantic-ui-react';
 import factory from '../ethereum/factory';
 import Layout from '../components/Layout';
 import { Link } from '../routes';
+import { map } from 'lodash'
 
-class RealEstateIndex extends Component {
-  static async getInitialProps() {
-    const realEstates = await factory.methods.getDeployedRealEstates().call();
+// const realEstates = await factory.methods.getDeployedRealEstates().call();
 
-    return { realEstates };
-  }
-
-  renderRealEstates() {
-    const items = this.props.realEstates.map(address => {
-      return {
-        header: address,
-        description: (
-          <Link route={`/estates/${address}`}>
-            <a>View RealEstate</a>
-          </Link>
-        ),
-        fluid: true
-      };
-    });
-
-    return <Card.Group items={items} />;
-  }
-
-  render() {
+const RealEstateIndex = ({realEstates = [] }) => {
     return (
       <Layout>
         <div>
-          <h3>Open Real Estates</h3>
+          <h3>Registered Real Estates</h3>
 
           <Link route="/estates/new">
             <a>
@@ -43,12 +23,18 @@ class RealEstateIndex extends Component {
               />
             </a>
           </Link>
-
-          {this.renderRealEstates()}
+          <Card.Group items={map(realEstates,address => ({
+              header: address,
+              description: (
+                <Link route={`/estates/${address}`}>
+                  <a>View RealEstate</a>
+                </Link>
+              ),
+              fluid: true
+          }))} />
         </div>
       </Layout>
     );
   }
-}
 
 export default RealEstateIndex;

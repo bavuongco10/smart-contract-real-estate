@@ -7,7 +7,7 @@ import { Router } from '../../routes';
 
 class RealEstateNew extends Component {
   state = {
-    minimumContribution: '',
+    address: '',
     errorMessage: '',
     loading: false
   };
@@ -16,11 +16,12 @@ class RealEstateNew extends Component {
     event.preventDefault();
 
     this.setState({ loading: true, errorMessage: '' });
-
+    console.log(this.state.address)
     try {
       const accounts = await web3.eth.getAccounts();
+      console.log(accounts[0]);
       await factory.methods
-        .createRealEstate(this.state.minimumContribution)
+        .createRegisterRequest(this.state.address)
         .send({
           from: accounts[0]
         });
@@ -40,11 +41,11 @@ class RealEstateNew extends Component {
 
         <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
           <Form.Field>
-            <label>Real Estate Address</label>
+            <label>Address</label>
             <Input
-              value={this.state.minimumContribution}
+              value={this.state.address}
               onChange={event =>
-                this.setState({ minimumContribution: event.target.value })}
+                this.setState({ address: event.target.value })}
             />
           </Form.Field>
 
