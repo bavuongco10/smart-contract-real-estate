@@ -140,7 +140,7 @@ contract DetailedERC721 is ERC721 {
 contract MysREToken is AccessControl, DetailedERC721 {
     struct RegisterRequest {
         address owner;
-        string homeAddress;
+        bytes32 dataHash;
         bool complete;
         uint256 approversCount;
         mapping(address => bool) approvers;
@@ -149,11 +149,11 @@ contract MysREToken is AccessControl, DetailedERC721 {
     }
 
     RegisterRequest[] public registerRequests;
-    function createRegisterRequest(string homeAddress) public {
+    function createRegisterRequest(bytes32 dataHash) public {
         require(appointedApprovers.length > 0);
         RegisterRequest memory newRequest = RegisterRequest({
             owner : msg.sender,
-            homeAddress : homeAddress,
+            dataHash : dataHash,
             complete : false,
             approversCount : appointedApprovers.length,
             approvalsCount : 0
@@ -188,7 +188,7 @@ contract MysREToken is AccessControl, DetailedERC721 {
 
     using SafeMath for uint256;
 
-    event TokenCreated(uint256 tokenId, string homeAddress, address owner);
+    event TokenCreated(uint256 tokenId, bytes32 dataHash, address owner);
 
     mapping(uint256 => address) private tokenIdToOwner;
     mapping(address => uint256) private ownershipTokenCount;
@@ -196,7 +196,7 @@ contract MysREToken is AccessControl, DetailedERC721 {
 
 
     struct RealEstate {
-        string homeAddress;
+        bytes32 dataHash;
     }
 
     RealEstate[] private realEstates;
@@ -211,25 +211,25 @@ contract MysREToken is AccessControl, DetailedERC721 {
     function finalizeRegisterRealEstate(uint256 index) {
         finalizeRegisterRequest(index);
         RegisterRequest memory request = registerRequests[index];
-        _createToken(request.homeAddress, request.owner);
+        _createToken(request.dataHash, request.owner);
     }
 
-    function _createToken(string _homeAddress, address _owner) private {
+    function _createToken(bytes32 _dataHash, address _owner) private {
         RealEstate memory _item = RealEstate({
-            homeAddress : _homeAddress
+            dataHash : _dataHash
             });
         uint256 newTokenId = realEstates.push(_item) - 1;
 
-        emit TokenCreated(newTokenId, _homeAddress, _owner);
+        emit TokenCreated(newTokenId, _dataHash, _owner);
 
         _transfer(address(0), _owner, newTokenId);
     }
 
     function getToken(uint256 _tokenId) public view returns (
-        string _homeAddress,
+        bytes32 _dataHash,
         address _owner
     ) {
-        _homeAddress = realEstates[_tokenId].homeAddress;
+        _dataHash = realEstates[_tokenId].dataHash;
         _owner = tokenIdToOwner[_tokenId];
     }
 
