@@ -3,7 +3,7 @@ import MysREToken from './build/MysREToken.json';
 
 const instance = new web3.eth.Contract(
   JSON.parse(MysREToken.interface),
-  '0x9749F2754347B3c334cBA63EE1956A8C8934fe12'
+  '0x1ce9368994c89c9bc4beb01db43e0628dcec8455'
 );
 
 export default instance;

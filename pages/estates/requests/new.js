@@ -4,7 +4,6 @@ import RealEstate from '../../../ethereum/realEstate';
 import web3 from '../../../ethereum/web3';
 import { Link, Router } from '../../../routes';
 import Layout from '../../../components/Layout';
-import realEstate from "../../../ethereum/realEstate";
 
 class RequestNew extends Component {
   state = {

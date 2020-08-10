@@ -1,6 +1,8 @@
 import web3 from './web3';
-import RealEstate from './build/RealEstate.json';
+import Binary from './build/MysREToken.json';
 
-export default address => {
-  return new web3.eth.Contract(JSON.parse(RealEstate.interface), address);
+const RealEstate = address => {
+  return new web3.eth.Contract(JSON.parse(Binary.interface), address);
 };
+
+export default RealEstate
