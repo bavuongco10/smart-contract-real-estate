@@ -316,7 +316,7 @@ contract MysREToken is AccessControl, DetailedERC721 {
     }
 
     function symbol() public view returns (string _symbol) {
-        _symbol = "MysRET";
+        _symbol = "MyRET";
     }
 
     function _owns(address _claimant, uint256 _tokenId) private view returns (bool) {
