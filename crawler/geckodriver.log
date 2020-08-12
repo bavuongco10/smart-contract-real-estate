@@ -114,3 +114,62 @@ console.warn: services.settings: main/whats-new-panel sync interrupted by shutdo
 1597184763532	Marionette	WARN	TLS certificate errors will be ignored for this session
 JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
 1597184768314	Marionette	INFO	Stopped listening on port 57259
+1597185597890	geckodriver	INFO	Listening on 127.0.0.1:64578
+1597185597900	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_l/jjnpfv5j3txcjzl234_lvb680000gn/T/rust_mozprofileo1OmwQ"
+1597185600111	Marionette	INFO	Listening on port 64588
+1597185600149	Marionette	WARN	TLS certificate errors will be ignored for this session
+1597185605191	Marionette	INFO	Stopped listening on port 64588
+console.warn: services.settings: main/whats-new-panel sync interrupted by shutdown
+1597185616063	geckodriver	INFO	Listening on 127.0.0.1:64865
+1597185616074	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_l/jjnpfv5j3txcjzl234_lvb680000gn/T/rust_mozprofileHeq4D1"
+1597185617922	Marionette	INFO	Listening on port 64874
+1597185618024	Marionette	WARN	TLS certificate errors will be ignored for this session
+1597185622591	Marionette	INFO	Stopped listening on port 64874
+1597185646633	geckodriver	INFO	Listening on 127.0.0.1:65253
+1597185646643	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_l/jjnpfv5j3txcjzl234_lvb680000gn/T/rust_mozprofileruXjdj"
+1597185648504	Marionette	INFO	Listening on port 65262
+1597185648594	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+1597185652782	Marionette	INFO	Stopped listening on port 65262
+1597185710813	geckodriver	INFO	Listening on 127.0.0.1:49428
+1597185710824	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_l/jjnpfv5j3txcjzl234_lvb680000gn/T/rust_mozprofilekYaGMB"
+1597185712675	Marionette	INFO	Listening on port 49437
+1597185712682	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://batdongsan.com.vn/ban-nha-rieng, line 1536: ReferenceError: ChangeCategoryContext is not defined
+1597185820182	Marionette	INFO	Stopped listening on port 49437
+1597185860503	geckodriver	INFO	Listening on 127.0.0.1:50741
+1597185861515	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_l/jjnpfv5j3txcjzl234_lvb680000gn/T/rust_mozprofile2S2PPL"
+1597185863693	Marionette	INFO	Listening on port 50760
+1597185863759	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+1597185903935	Marionette	INFO	Stopped listening on port 50760
+1597186014602	geckodriver	INFO	Listening on 127.0.0.1:52043
+1597186015616	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_l/jjnpfv5j3txcjzl234_lvb680000gn/T/rust_mozprofile1N1IcT"
+1597186017674	Marionette	INFO	Listening on port 52061
+1597186017758	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: "Store does not have a valid reducer. Make sure the argument passed to combineReducers is an object whose values are reducers."
+console.error: "Task cancelled"
+console.error: "Error sending event: serverWebSocketClosed"
+console.error: (new Error("undefined passed where a value is required", "resource://devtools/shared/protocol/types.js", 115))
+Error: undefined passed where a value is required: identityWrite@resource://devtools/shared/protocol/types.js:115:11
+write@resource://devtools/shared/protocol/Request.js:117:22
+write@resource://devtools/shared/protocol/Request.js:43:26
+_sendEvent@resource://devtools/shared/protocol/Actor.js:66:24
+initialize/<@resource://devtools/shared/protocol/Actor.js:46:16
+_emit@resource://devtools/shared/event-emitter.js:226:34
+emit@resource://devtools/shared/event-emitter.js:172:18
+emit@resource://devtools/shared/event-emitter.js:324:18
+webSocketClosed@resource://devtools/server/actors/network-monitor/websocket-actor.js:96:10
+
+1597186543363	Marionette	INFO	Stopped listening on port 52061
+1597186557512	geckodriver	INFO	Listening on 127.0.0.1:56008
+1597186558526	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_l/jjnpfv5j3txcjzl234_lvb680000gn/T/rust_mozprofilekAgVWZ"
+1597186560644	Marionette	INFO	Listening on port 56030
+1597186560681	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource:///modules/FaviconLoader.jsm, line 568: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+1597186735023	geckodriver	INFO	Listening on 127.0.0.1:57391
+1597186736038	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_l/jjnpfv5j3txcjzl234_lvb680000gn/T/rust_mozprofileqyXR76"
+1597186738054	Marionette	INFO	Listening on port 57409
+1597186738098	Marionette	WARN	TLS certificate errors will be ignored for this session
+1597186742525	Marionette	INFO	Stopped listening on port 57409
+1597186745242	Marionette	INFO	Stopped listening on port 56030

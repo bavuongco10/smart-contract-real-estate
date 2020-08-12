@@ -137,7 +137,7 @@ contract DetailedERC721 is ERC721 {
     function symbol() public view returns (string _symbol);
 }
 
-contract MysREToken is AccessControl, DetailedERC721 {
+contract MyREToken is AccessControl, DetailedERC721 {
     struct RegisterRequest {
         address owner;
         bytes32 dataHash;

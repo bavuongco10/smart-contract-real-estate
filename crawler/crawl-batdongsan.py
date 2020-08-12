@@ -9,15 +9,15 @@ Created on Wed Aug 12 03:15:27 2020
 from selenium import webdriver
 import json
 import os
+import time
 
-profile = webdriver.FirefoxProfile()
-profile.set_preference("javascript.enabled", False);
-driver = webdriver.Firefox(profile)
+driver = webdriver.Firefox()
 
 
 def is_new():
   try:
-    driver.find_elements_by_class_name('top-bar-element-message')
+    els = driver.find_elements_by_class_name('product-item')
+    if(len(els) < 1): return False
     return True
   except:
     return False
@@ -33,11 +33,12 @@ def get_houses_by_page(page_number):
   for house in houses:
     address = house.find_element_by_class_name('location' if new_layout else 'product-city-dist').text
     area = house.find_element_by_class_name('area' if new_layout else 'product-area').text
-
+    driver.execute_script("return arguments[0].scrollIntoView();", house)
     images = []
     image_els = house.find_elements_by_tag_name('img')
     for image_el in image_els:
-      images.append(image_el.get_attribute('src'))
+      image_src = image_el.get_attribute('src')
+      if('staticfile' not in image_src): images.append(image_src)
 
     house_data.append({ 'address': address,
                        'area': float(area.replace('m²','')),

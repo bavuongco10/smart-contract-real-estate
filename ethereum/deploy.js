@@ -1,6 +1,6 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 const Web3 = require('web3');
-const compiledFactory = require('./build/MysREToken.json');
+const compiledFactory = require('./build/MyREToken.json');
 
 // const mnemonic = 'call glow acoustic vintage front ring trade assist shuffle mimic volume reject'
 // const provider = new HDWalletProvider(

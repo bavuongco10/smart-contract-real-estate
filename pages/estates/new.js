@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Form, Button, Input, Message } from 'semantic-ui-react';
+import { Form, Button, Input, Message, Grid } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
 import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
 import { Router } from '../../routes';
+import { InputFile } from 'semantic-ui-react-input-file'
 
 class RealEstateNew extends Component {
   state = {
@@ -37,16 +38,75 @@ class RealEstateNew extends Component {
   render() {
     return (
       <Layout>
-        <h3>Register a Real Estate</h3>
+        <h3>Đăng ký quyền sở hữu Bất động sản</h3>
 
         <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
           <Form.Field>
-            <label>Address</label>
+            <label>Địa chỉ</label>
             <Input
               value={this.state.address}
               onChange={event =>
                 this.setState({ address: event.target.value })}
             />
+          </Form.Field>
+
+          <Form.Field>
+            <label>Thửa đất số</label>
+            <Input />
+          </Form.Field>
+
+          <Form.Field>
+            <label>Bản đồ số</label>
+            <Input />
+          </Form.Field>
+
+          <Form.Field>
+            <label>Diện tích</label>
+            <Input />
+          </Form.Field>
+
+          <Form.Field>
+            <Grid celled columns={4}>
+              <Grid.Row><Grid.Column width={16}>Bảng kê toạ độ</Grid.Column></Grid.Row>
+              <Grid.Row>
+                <Grid.Column>Số hiệu</Grid.Column>
+                <Grid.Column>X (m)</Grid.Column>
+                <Grid.Column>Y (m)</Grid.Column>
+                <Grid.Column>S (m)</Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column><Input/></Grid.Column>
+                <Grid.Column><Input/></Grid.Column>
+                <Grid.Column><Input/></Grid.Column>
+                <Grid.Column><Input/></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column><Input/></Grid.Column>
+                <Grid.Column><Input/></Grid.Column>
+                <Grid.Column><Input/></Grid.Column>
+                <Grid.Column><Input/></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column><Input/></Grid.Column>
+                <Grid.Column><Input/></Grid.Column>
+                <Grid.Column><Input/></Grid.Column>
+                <Grid.Column><Input/></Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column><Input/></Grid.Column>
+                <Grid.Column><Input/></Grid.Column>
+                <Grid.Column><Input/></Grid.Column>
+                <Grid.Column><Input/></Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Form.Field>
+          <Form.Field>
+            <label>Files</label>
+            <InputFile
+              input={{
+                id: 'input-control-id',
+              }}
+              />
           </Form.Field>
 
           <Message error header="Oops!" content={this.state.errorMessage} />

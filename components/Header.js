@@ -6,12 +6,12 @@ export default () => {
   return (
     <Menu style={{ marginTop: '10px' }}>
       <Link route="/">
-        <a className="item">MysREToken</a>
+        <a className="item">MyREToken</a>
       </Link>
 
       <Menu.Menu position="right">
         <Link route="/">
-          <a className="item">Registered Real Estates</a>
+          <a className="item">Real Estates</a>
         </Link>
 
         <Link route="/estates/new">
