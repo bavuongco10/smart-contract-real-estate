@@ -32,7 +32,7 @@ import data from "../../data.json";
 //   approversCount={this.props.approversCount}
 // />
 
-const MyItem = ({ owner, image, address, newOwner}) => {
+const MyItem = ({ owner, image, address}) => {
   return <Item>
     <Item.Image src={image} />
     <Item.Content>
@@ -40,9 +40,7 @@ const MyItem = ({ owner, image, address, newOwner}) => {
       <Item.Meta>
         <span className='cinema'>Số đơn vị đã xác nhận: 2/5</span>
       </Item.Meta>
-      Chủ sở hữu hiện tại: {owner}
-      <br/>
-      Chủ sở hữu mới: {newOwner}
+      Chủ sở hữu: {owner}
       <Item.Extra>
         <Button  basic primary compact>
           <Link route={`/estates/1`}>
@@ -63,12 +61,12 @@ const MyItem = ({ owner, image, address, newOwner}) => {
 const  RequestIndex  = () =>  {
     return (
       <Layout>
-        <h3>Danh sách yêu cầu chuyển thông tin quyền sở hữu Bất động sản</h3>
+        <h3>Yêu cầu đăng kí quyền sở hữu Bất động sản</h3>
         <Item.Group>
-          <MyItem owner={'Thiên Nhi'} image={data[5].files[0]} address={data[5].address} newOwner={'Thị D'}/>
-          <MyItem owner={'Văn A'} image={data[6].files[0]} address={data[6].address} newOwner={'Thị E'}/>
-          <MyItem owner={'Văn B'} image={data[7].files[0]} address={data[7].address} newOwner={'Thị F'}/>
-          <MyItem owner={'Thị C'} image={data[8].files[0]} address={data[7].address} newOwner={'Thị G'}/>
+          <MyItem owner={'Phương Ngân'} image={data[0].files[0]} address={data[0].address}/>
+          <MyItem owner={'Văn A'} image={data[1].files[0]} address={data[1].address}/>
+          <MyItem owner={'Văn B'} image={data[2].files[0]} address={data[2].address}/>
+          <MyItem owner={'Thị C'} image={data[3].files[0]} address={data[3].address}/>
         </Item.Group>
       </Layout>
     );

@@ -133,11 +133,30 @@ contract ERC721 {
 
 contract DetailedERC721 is ERC721 {
     function name() public view returns (string _name);
-
     function symbol() public view returns (string _symbol);
 }
 
 contract MyREToken is AccessControl, DetailedERC721 {
+    using SafeMath for uint256;
+
+    mapping(uint256 => address) private tokenIdToOwner;
+    mapping (uint256 => uint256) private tokenIdToPrice;
+    mapping(address => uint256) private ownershipTokenCount;
+    mapping(uint256 => address) private tokenIdToApproved;
+    mapping (uint256 => uint256) private transferIdToPaid;
+
+
+    struct RealEstate {
+        bytes32 dataHash;
+    }
+
+    bool private erc721Enabled = false;
+
+    modifier onlyERC721() {
+        require(erc721Enabled);
+        _;
+    }
+
     struct RegisterRequest {
         address owner;
         bytes32 dataHash;
@@ -148,9 +167,23 @@ contract MyREToken is AccessControl, DetailedERC721 {
         mapping(address => bool) approvals;
     }
 
+    struct TransferRequest {
+        address from;
+        bool complete;
+        address to;
+        uint256 tokenId;
+        uint256 price;
+        uint256 approversCount;
+        mapping(address => bool) approvers;
+        uint256 approvalsCount;
+        mapping(address => bool) approvals;
+    }
+
+    RealEstate[] private realEstates;
     RegisterRequest[] public registerRequests;
+    TransferRequest[] public transferRequests;
+
     function createRegisterRequest(bytes32 dataHash) public {
-        require(appointedApprovers.length > 0);
         RegisterRequest memory newRequest = RegisterRequest({
             owner : msg.sender,
             dataHash : dataHash,
@@ -185,34 +218,71 @@ contract MyREToken is AccessControl, DetailedERC721 {
         request.complete = true;
     }
 
-
-    using SafeMath for uint256;
-
     event TokenCreated(uint256 tokenId, bytes32 dataHash, address owner);
-
-    mapping(uint256 => address) private tokenIdToOwner;
-    mapping(address => uint256) private ownershipTokenCount;
-    mapping(uint256 => address) private tokenIdToApproved;
-
-
-    struct RealEstate {
-        bytes32 dataHash;
-    }
-
-    RealEstate[] private realEstates;
-
-    bool private erc721Enabled = false;
-
-    modifier onlyERC721() {
-        require(erc721Enabled);
-        _;
-    }
 
     function finalizeRegisterRealEstate(uint256 index) {
         finalizeRegisterRequest(index);
         RegisterRequest memory request = registerRequests[index];
         _createToken(request.dataHash, request.owner);
     }
+
+    function createTransferRequest(address to, uint256 tokenId, uint price) public {
+        require(_to != address(0));
+        require(_owns(msg.sender, _tokenId));
+
+        TransferRequest memory newRequest = TransferRequest({
+            from : msg.sender,
+            complete : false,
+            to : to,
+            price: price,
+            tokenId: tokenId,
+            approversCount : appointedApprovers.length,
+            approvalsCount : 0
+            });
+
+        uint256 newTokenIndex = transferRequests.push(newRequest) - 1;
+        TransferRequest storage currentRequest = transferRequests[newTokenIndex];
+        for (uint256 i = 0; i < appointedApprovers.length; i++) {
+            currentRequest.approvers[appointedApprovers[i]] = true;
+        }
+    }
+
+    function approveTransferRequest(uint256 index) public {
+        TransferRequest storage request = transferRequests[index];
+
+        require(request.approvers[msg.sender]);
+        require(!request.approvals[msg.sender]);
+
+        request.approvals[msg.sender] = true;
+        request.approvalsCount++;
+    }
+
+    function finalizeTransferRequest(uint256 index) public {
+        TransferRequest storage request = transferRequests[index];
+
+        require(request.approvalsCount > (request.approversCount / 2));
+        require(!request.complete);
+
+        request.complete = true;
+    }
+
+    function finalizeTransferRealEstate(uint256 index) {
+        finalizeTransferRequest(index);
+        TransferRequest memory request = transferRequests[index];
+        request.from.transfer(request.price);
+        _transfer(request.from, request.to, request.tokenId);
+    }
+
+    function payTransfer(uint256 transferId) public payable  {
+        TransferRequest storage request = transferRequests[transferId];
+        require(request.price > 0);
+        require(!request.complete);
+        require(!transferIdToPaid[transferId]);
+        require(msg.value >= request.price);
+
+        transferIdToPaid[transferId] = true;
+    }
+
 
     function _createToken(bytes32 _dataHash, address _owner) private {
         RealEstate memory _item = RealEstate({
